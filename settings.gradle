@@ -1,0 +1,4 @@
+include ':views'
+include ':utils'
+include ':app'
+rootProject.name = "vUtils"
