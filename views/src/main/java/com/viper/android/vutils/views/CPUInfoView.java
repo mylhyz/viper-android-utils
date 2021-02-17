@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class CPUInfoView extends AbsInfoView {
 
-
     public CPUInfoView(Context context) {
         super(context);
     }

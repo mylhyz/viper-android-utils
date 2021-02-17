@@ -1,6 +1,7 @@
 package com.viper.android.vutils.views;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -39,6 +40,11 @@ public abstract class AbsInfoView extends AppCompatTextView {
 
         public Builder() {
             mStringBuilder = new StringBuilder();
+        }
+
+        public Builder put(int number) {
+            mStringBuilder.append(number);
+            return this;
         }
 
         public Builder put(String text) {

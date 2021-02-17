@@ -8,13 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="4dp">
 
-        <com.viper.android.vutils.views.CPUInfoView
+        <com.viper.android.vutils.views.DeviceInfoView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.viper.android.vutils.views.DeviceInfoView
+        <com.viper.android.vutils.views.CPUInfoView
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
