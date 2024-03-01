@@ -3,32 +3,24 @@
 添加远程依赖
 
 ```gradle
-        maven {
-            url "https://maven.pkg.github.com/mylhyz/viper-android-utils"
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
-            }
-        }
+maven {
+    url "https://maven.pkg.github.com/mylhyz/viper-android-utils"
+    credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+        password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+    }
+}
 ```
 
 添加依赖库版本
 
-```gradle
-    implementation "com.viper.android.vutils:utils:${rootProject.ext.vUtils_version}"
-    implementation "com.viper.android.vutils:system:${rootProject.ext.vUtils_version}"
-    implementation "com.viper.android.vutils:views:${rootProject.ext.vUtils_version}"
-    implementation "co.lujun.androidtagview:core:${rootProject.ext.AndroidTagView_version}"
-```
-
-版本号定义
-
-```gradle
-ext {
-    vUtils_version = "1.1.2"
-    AndroidTagView_version = "1.1.7"
-}
-```
+| artifact                                     | version                                                         |
+| -------------------------------------------- | --------------------------------------------------------------- |
+| com.viper.android.vutils:utils:${version}    | ![version](https://img.shields.io/badge/gpr-1.14-blue)          |
+| com.viper.android.vutils:system:${version}   | ![version](https://img.shields.io/badge/gpr-1.1.4-blue)         |
+| com.viper.android.vutils:views:${version}    | ![version](https://img.shields.io/badge/gpr-1.1.4-blue)         |
+| co.lujun.androidtagview:core:${version}      | ![version](https://img.shields.io/badge/gpr-1.1.8--beta.0-blue) |
+| com.github.tony19:logback-android:${version} | ![version](https://img.shields.io/badge/gpr-1.3.1--beta.0-blue) |
 
 # LICENSE
 
