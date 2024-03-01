@@ -18,8 +18,8 @@ publishing {
     }
     publications {
         gpr(MavenPublication) {
-            groupId 'com.viper.android.vutils'
-            artifactId 'system'
+            groupId 'co.lujun.androidtagview'
+            artifactId 'core'
             version RELEASE_VERSION
             afterEvaluate {
                 artifact bundleReleaseAar

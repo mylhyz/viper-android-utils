@@ -6,7 +6,7 @@
         maven {
             url "https://maven.pkg.github.com/mylhyz/vUtils"
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USER")
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             }
         }
