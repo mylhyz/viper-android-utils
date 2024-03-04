@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.viper.android.vutils.intent.control">
+
+    <application>
+        <service
+            android:name=".ICService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.viper.android.vutils.intent.control.DO_ACTION" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
