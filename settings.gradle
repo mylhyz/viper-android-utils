@@ -1,4 +1,4 @@
-rootProject.name = "viper-utils"
+rootProject.name = "viper-android-utils"
 
 include ':system'
 include ':views'
