@@ -40,6 +40,7 @@ dependencies {
     implementation project(path: ':AndroidTagView')
     implementation project(path: ':logback-android')
     implementation project(path: ':IntentControl')
+    implementation project(path: ':FilePicker')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
