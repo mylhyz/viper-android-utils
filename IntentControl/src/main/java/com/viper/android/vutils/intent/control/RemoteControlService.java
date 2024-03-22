@@ -5,10 +5,10 @@ import android.content.Intent;
 
 import androidx.annotation.Nullable;
 
-public class ICService extends IntentService {
+public class RemoteControlService extends IntentService {
 
-    public ICService() {
-        super("IntentControlService");
+    public RemoteControlService() {
+        super("RemoteControlService");
     }
 
     @Override

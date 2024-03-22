@@ -4,7 +4,7 @@
 
     <application>
         <service
-            android:name=".ICService"
+            android:name=".RemoteControlService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.viper.android.vutils.intent.control.DO_ACTION" />
