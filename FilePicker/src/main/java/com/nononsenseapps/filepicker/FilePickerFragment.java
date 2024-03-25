@@ -7,23 +7,18 @@
 package com.nononsenseapps.filepicker;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.os.FileObserver;
-import android.provider.Settings;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.SortedListAdapterCallback;
+
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -34,7 +29,6 @@ import java.io.File;
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
-    protected static final int PERMISSIONS_REQUEST_MANAGE_EXTERNAL_STORAGE = 2;
     protected boolean showHiddenItems = false;
     private File mRequestedPath = null;
 
@@ -46,7 +40,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      *
      * @param showHiddenItems whether hidden items should be shown or not
      */
-    public void showHiddenItems(boolean showHiddenItems) {
+    public void showHiddenItems(boolean showHiddenItems){
         this.showHiddenItems = showHiddenItems;
     }
 
@@ -56,7 +50,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if hidden items are shown, otherwise false
      */
 
-    public boolean areHiddenItemsShown() {
+    public boolean areHiddenItemsShown(){
         return showHiddenItems;
     }
 
@@ -65,15 +59,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      */
     @Override
     protected boolean hasPermission(@NonNull File path) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return Environment.isExternalStorageManager();
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return PackageManager.PERMISSION_GRANTED ==
-                    ContextCompat.checkSelfPermission(requireContext(),
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        return true;
-
+        return PackageManager.PERMISSION_GRANTED ==
+                ContextCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     /**
@@ -81,22 +69,15 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      */
     @Override
     protected void handlePermission(@NonNull File path) {
+//         Should we show an explanation?
+//        if (shouldShowRequestPermissionRationale(
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//             Explain to the user why we need permission
+//        }
+
         mRequestedPath = path;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-            intent.setData(Uri.parse("package:" + requireContext().getPackageName()));
-            startActivityForResult(intent, 2);
-        } else {
-            //         Should we show an explanation?
-//            if (shouldShowRequestPermissionRationale(
-//                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-//                Explain to the user why we need permission
-//            }
-
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-        }
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
     }
 
     /**
@@ -132,26 +113,6 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 }
             }
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (PERMISSIONS_REQUEST_MANAGE_EXTERNAL_STORAGE == requestCode && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (Environment.isExternalStorageManager()) {
-                // Do refresh
-                if (mRequestedPath != null) {
-                    refresh(mRequestedPath);
-                }
-            } else {
-                Toast.makeText(getContext(), R.string.nnf_permission_external_write_denied,
-                        Toast.LENGTH_SHORT).show();
-                // Treat this as a cancel press
-                if (mListener != null) {
-                    mListener.onCancelled();
-                }
-            }
-        }
-
     }
 
     /**
