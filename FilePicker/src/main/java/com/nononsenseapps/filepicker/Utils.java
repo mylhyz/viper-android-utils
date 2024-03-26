@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.nononsenseapps.filepicker.AbstractFilePickerActivity.EXTRA_ALLOW_MULTIPLE;
-import static com.nononsenseapps.filepicker.AbstractFilePickerActivity.EXTRA_PATHS;
+import static com.nononsenseapps.filepicker.AbstractFilePickerActivity.RET_EXTRA_PATHS;
 
 /**
  * Some utility methods
@@ -106,7 +106,7 @@ public class Utils {
     public static List<Uri> getSelectedFilesFromResult(@NonNull Intent data) {
         List<Uri> result = new ArrayList<>();
         if (data.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, false)) {
-            List<String> paths = data.getStringArrayListExtra(EXTRA_PATHS);
+            List<String> paths = data.getStringArrayListExtra(RET_EXTRA_PATHS);
             if (paths != null) {
                 for (String path : paths) {
                     result.add(Uri.parse(path));

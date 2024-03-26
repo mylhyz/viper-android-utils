@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,14 +54,39 @@ import java.util.List;
  */
 public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         implements AbstractFilePickerFragment.OnFilePickedListener {
+    /**
+     * 需要进行文件选择的文件根目录
+     */
     public static final String EXTRA_START_PATH = "nononsense.intent" + ".START_PATH";
+    /**
+     * 可选模式：
+     * public static final int MODE_FILE = 0; // 默认，仅文件可选
+     * public static final int MODE_DIR = 1; // 仅文件夹可选
+     * public static final int MODE_FILE_AND_DIR = 2; // 文件夹和文件都可选
+     * public static final int MODE_NEW_FILE = 3; // 创建新文件
+     */
     public static final String EXTRA_MODE = "nononsense.intent.MODE";
+    /**
+     * 是否支持创建目录
+     */
     public static final String EXTRA_ALLOW_CREATE_DIR = "nononsense.intent" + ".ALLOW_CREATE_DIR";
+    /**
+     * 是否为单选，不会显示多选框
+     */
     public static final String EXTRA_SINGLE_CLICK = "nononsense.intent" + ".SINGLE_CLICK";
     // For compatibility
+    /**
+     * 支持多选，和 {@link EXTRA_SINGLE_CLICK } {@link MODE_NEW_FILE } 不能同时设置
+     */
     public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" + ".ALLOW_MULTIPLE";
+    /**
+     * 是否将已经存在的文件选中作为返回值（仅 {@link MODE_NEW_FILE } 下使用
+     */
     public static final String EXTRA_ALLOW_EXISTING_FILE = "android.intent.extra" + ".ALLOW_EXISTING_FILE";
-    public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
+    /**
+     * 多选返回值KEY
+     */
+    public static final String RET_EXTRA_PATHS = "nononsense.intent.PATHS";
     public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
     public static final int MODE_FILE_AND_DIR = AbstractFilePickerFragment.MODE_FILE_AND_DIR;
     public static final int MODE_NEW_FILE = AbstractFilePickerFragment.MODE_NEW_FILE;
@@ -139,7 +165,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         for (Uri file : files) {
             paths.add(file.toString());
         }
-        i.putStringArrayListExtra(EXTRA_PATHS, paths);
+        i.putStringArrayListExtra(RET_EXTRA_PATHS, paths);
 
         // Set as Clip Data for Jelly bean and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

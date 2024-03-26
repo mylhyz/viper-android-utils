@@ -4,19 +4,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
-import com.nononsenseapps.filepicker.doc.DocumentPickerFragment;
-
-import java.util.List;
+import com.nononsenseapps.filepicker.doc.DocumentPickerActivity;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class DocPickerStartActivity extends AppCompatActivity implements DocumentPickerFragment.OnFilePickedListener {
+public class DocPickerStartActivity extends AppCompatActivity {
+
+    private static final String TAG = "DocPickerStartActivity";
 
 
     @Override
@@ -32,28 +31,12 @@ public class DocPickerStartActivity extends AppCompatActivity implements Documen
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             Uri root = data.getData();
-            getContentResolver().takePersistableUriPermission(
-                    root, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            if (!DocumentPickerFragment.isTreeUsable(this, root))
-                return;
-            DocumentPickerFragment fragment = new DocumentPickerFragment(root);
-            fragment.setArgs(null, AbstractFilePickerFragment.MODE_FILE_AND_DIR, false, true, true, true);
-            getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+            Intent intent = new Intent(this, DocumentPickerActivity.class);
+            intent.putExtra(DocumentPickerActivity.EXTRA_START_PATH, root.toString());
+            intent.putExtra(DocumentPickerActivity.EXTRA_MODE, DocumentPickerActivity.MODE_NEW_FILE);
+            startActivityForResult(intent, 2);
+        } else if (requestCode == 2 && resultCode == RESULT_OK) {
+            Log.i(TAG, data.toString());
         }
-    }
-
-    @Override
-    public void onFilePicked(@NonNull Uri file) {
-
-    }
-
-    @Override
-    public void onFilesPicked(@NonNull List<Uri> files) {
-
-    }
-
-    @Override
-    public void onCancelled() {
-
     }
 }

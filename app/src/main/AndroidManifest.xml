@@ -68,6 +68,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.nononsenseapps.filepicker.doc.DocumentPickerActivity"
+            android:theme="@style/FilePickerTheme" />
     </application>
 
 </manifest>
