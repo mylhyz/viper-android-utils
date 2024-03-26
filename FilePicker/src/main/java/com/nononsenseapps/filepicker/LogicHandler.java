@@ -7,10 +7,12 @@
 package com.nononsenseapps.filepicker;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.SortedList;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.ViewGroup;
 
 /**
@@ -60,6 +62,13 @@ public interface LogicHandler<T> {
      */
     @NonNull
     String getFullPath(@NonNull final T path);
+
+    /**
+     * @param path path
+     * @return the readable path
+     */
+    @NonNull
+    String getCanonicalPathName(@NonNull final T path);
 
     /**
      * Convert the path to the type used.

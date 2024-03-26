@@ -144,6 +144,20 @@ public class DocumentPickerFragment extends AbstractFilePickerFragment<Uri> {
 
     @NonNull
     @Override
+    public String getCanonicalPathName(@NonNull Uri path) {
+        // Document URI is link
+        // -> /tree/primary:dir1/document/primary:dir1/crash/a1
+        // -> /tree/primary:dir1
+        String p = path.getPath();
+        int index = p.lastIndexOf(":");
+        if (index != -1) {
+            return p.substring(index + 1);
+        }
+        return p;
+    }
+
+    @NonNull
+    @Override
     public Uri getPath(@NonNull String path) {
         return Uri.parse(path);
     }

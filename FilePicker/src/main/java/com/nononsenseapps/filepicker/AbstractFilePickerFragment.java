@@ -229,7 +229,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         mCurrentDirView = (TextView) view.findViewById(R.id.nnf_current_dir);
         // Restore state
         if (mCurrentPath != null && mCurrentDirView != null) {
-            mCurrentDirView.setText(getFullPath(mCurrentPath));
+            mCurrentDirView.setText(getCanonicalPathName(mCurrentPath));
         }
 
         return view;
@@ -581,7 +581,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         mFiles = data;
         mAdapter.setList(data);
         if (mCurrentDirView != null) {
-            mCurrentDirView.setText(getFullPath(mCurrentPath));
+            mCurrentDirView.setText(getCanonicalPathName(mCurrentPath));
         }
         // Stop loading now to avoid a refresh clearing the user's selections
         getLoaderManager().destroyLoader( 0 );

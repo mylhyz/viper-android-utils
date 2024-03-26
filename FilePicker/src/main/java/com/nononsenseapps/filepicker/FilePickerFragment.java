@@ -10,6 +10,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.FileObserver;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -40,7 +41,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      *
      * @param showHiddenItems whether hidden items should be shown or not
      */
-    public void showHiddenItems(boolean showHiddenItems){
+    public void showHiddenItems(boolean showHiddenItems) {
         this.showHiddenItems = showHiddenItems;
     }
 
@@ -50,7 +51,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if hidden items are shown, otherwise false
      */
 
-    public boolean areHiddenItemsShown(){
+    public boolean areHiddenItemsShown() {
         return showHiddenItems;
     }
 
@@ -176,6 +177,12 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     @Override
     public String getFullPath(@NonNull final File path) {
         return path.getPath();
+    }
+
+    @NonNull
+    @Override
+    public String getCanonicalPathName(@NonNull File path) {
+        return getFullPath(path);
     }
 
     /**
