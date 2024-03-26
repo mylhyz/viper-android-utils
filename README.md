@@ -21,6 +21,7 @@ maven {
 | com.viper.android.vutils:views:${version}    | ![version](https://img.shields.io/badge/gpr-1.1.4-blue)         |
 | co.lujun.androidtagview:core:${version}      | ![version](https://img.shields.io/badge/gpr-1.1.8--beta.0-blue) |
 | com.github.tony19:logback-android:${version} | ![version](https://img.shields.io/badge/gpr-1.3.1--beta.0-blue) |
+| com.nononsenseapps:filepicker:${version}     | ![version](https://img.shields.io/badge/gpr-4.3.0--beta.0-blue) |
 
 # LICENSE
 
