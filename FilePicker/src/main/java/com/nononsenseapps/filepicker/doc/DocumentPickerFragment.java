@@ -1,7 +1,6 @@
 package com.nononsenseapps.filepicker.doc;
 
 
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,11 +17,9 @@ import androidx.recyclerview.widget.SortedListAdapterCallback;
 
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * An implementation of the picker that operates on a document tree.

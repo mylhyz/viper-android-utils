@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.doc.DocumentPickerFragment;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class DocPickerStartActivity extends AppCompatActivity implements Documen
             if (!DocumentPickerFragment.isTreeUsable(this, root))
                 return;
             DocumentPickerFragment fragment = new DocumentPickerFragment(root);
+            fragment.setArgs(null, AbstractFilePickerFragment.MODE_FILE_AND_DIR, false, true, true, true);
             getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
         }
     }
