@@ -93,7 +93,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:hint="@string/nnf_list_ok"
-                app:srcCompat="@drawable/nnf_ic_save_black_24dp"
+                app:srcCompat="@drawable/nnf_ic_save_white_24dp"
                 android:tint="?attr/nnf_save_icon_color"/>
 
         </LinearLayout>

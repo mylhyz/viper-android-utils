@@ -26,14 +26,14 @@
         android:layout_height="?android:listPreferredItemHeight"
         android:adjustViewBounds="true"
         android:scaleType="center"
-        app:srcCompat="@drawable/nnf_ic_folder_black_48dp"
+        app:srcCompat="@drawable/nnf_ic_folder_white_48dp"
         android:tint="?attr/nnf_dir_icon_color"
         android:visibility="visible"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@android:id/text1"
-        style="?android:textAppearanceLarge"
+        style="?android:textAppearanceMedium"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

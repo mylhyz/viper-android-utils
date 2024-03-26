@@ -176,17 +176,18 @@ public class DocumentPickerFragment extends AbstractFilePickerFragment<Uri> {
                 SortedList<Uri> ret = new SortedList<>(Uri.class, new SortedListAdapterCallback<Uri>(getDummyAdapter()) {
                     @Override
                     public int compare(Uri o1, Uri o2) {
-                        return 0;
+                        // 保持原有的item顺序
+                        return -1;
                     }
 
                     @Override
                     public boolean areContentsTheSame(Uri oldItem, Uri newItem) {
-                        return false;
+                        return oldItem.equals(newItem);
                     }
 
                     @Override
                     public boolean areItemsTheSame(Uri item1, Uri item2) {
-                        return false;
+                        return areContentsTheSame(item1, item2);
                     }
                 });
 
