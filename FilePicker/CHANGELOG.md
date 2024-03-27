@@ -1,3 +1,9 @@
+## 4.3.0
+
+### Added
+
+- DocumentPickerActivity for API21
+- DocumentPickerFragment for API21
 
 ## 4.2.1
 
