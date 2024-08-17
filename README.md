@@ -1,6 +1,6 @@
 # viper-android-utils
 
-添加远程依赖
+添加远程依赖 - Gradle
 
 ```gradle
 maven {
@@ -11,6 +11,19 @@ maven {
     }
 }
 ```
+
+添加远程依赖 - Gradle KTS
+
+```kts
+maven {
+    url = uri("https://maven.pkg.github.com/mylhyz/viper-android-utils")
+    credentials {
+        username = System.getenv("GITHUB_USERNAME")
+        password = System.getenv("GITHUB_TOKEN")
+    }
+}
+```
+
 
 添加依赖库版本
 
