@@ -1,0 +1,26 @@
+apply plugin: "maven-publish"
+
+tasks.register('clazzJar', Jar) {
+    from sourceSets.main.java.srcDirs
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/mylhyz/viper-android-utils")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            groupId 'com.bydauto.oip'
+            artifactId 'sdk-v1'
+            version RELEASE_VERSION
+            artifact clazzJar
+        }
+    }
+}
